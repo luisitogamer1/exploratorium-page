@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exploratorium San Francisco</title>
+
+  <!-- Fuentes e íconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+ body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://media.telemundoareadelabahia.com/2022/11/exhibicion-de-luces-sf.jpg?quality=85&strip=all&resize=850%2C478');
+  background-size: cover;              /* Hace que la imagen cubra toda la pantalla */
+  background-repeat: no-repeat;        /* Evita que se repita la imagen */
+  background-position: center center;  /* Centra la imagen */
+  background-attachment: fixed;        /* Mantiene el fondo fijo al hacer scroll */
+  background-color: #f1f5f9;           /* Color de fondo por si la imagen tarda */
+  color: #222;                         /* Color de texto */
+}
+
+    }
+
+    /* Header con imagen de fondo en el título */
+    header {
+      background-color: rgba(0, 61, 102, 0.95);
+      color: white;
+      padding: 1.5em 1em;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 2.8em;
+      margin: 0;
+      position: relative;
+      z-index: 2;
+      padding: 0.2em 0.6em;
+      display: inline-block;
+      /* Texto con sombra para mejor legibilidad */
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+      color: #fff;
+    }
+    header h1::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180%;
+      height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.6) saturate(1.2);
+      border-radius: 12px;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    header p {
+      margin: 0.5em 0 0 0;
+      font-size: 1.2em;
+      font-weight: 300;
+      color: #dce6f1;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    nav {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 1em;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    nav select {
+      padding: 0.8em;
+      border-radius: 8px;
+      font-size: 1em;
+      border: 2px solid #0077cc;
+      background-color: #e6f0ff;
+      color: #003366;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    nav select:hover,
+    nav select:focus {
+      background-color: #cce0ff;
+      border-color: #005fa3;
+      outline: none;
+    }
+
+    main {
+      padding: 25px 20px;
+      max-width: 1100px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.98);
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    section {
+      margin: 40px 0;
+      padding: 30px 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 50, 0.07);
+      background: linear-gradient(135deg, #e1ecff 0%, #ffffff 100%);
+      border: 1px solid #a6c1ff;
+    }
+
+    h2 {
+      color: #003366;
+      margin-top: 0;
+      font-weight: 600;
+      border-bottom: 3px solid #0077cc;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0, 119, 204, 0.5);
+    }
+
+    /* Tarjetas de imagen */
+    .card-image {
+      border: 3px solid #005fa3;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0, 95, 163, 0.25);
+      transition: transform 0.3s ease;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background: white;
+    }
+
+    .card-image img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .card-image:hover img {
+      transform: scale(1.07);
+      filter: drop-shadow(0 0 6px #0077cc);
+    }
+
+    /* Galería */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+    }
+
+    .gallery a {
+      border: 3px solid #005fa3;
+      border-radius: 14px;
+      overflow: hidden;
+      display: block;
+      width: 180px;
+      box-shadow: 0 6px 20px rgba(0, 95, 163, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: white;
+    }
+
+    .gallery a img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+      border-radius: 14px;
+    }
+
+    .gallery a:hover {
+      transform: scale(1.12);
+      box-shadow: 0 10px 30px rgba(0, 95, 163, 0.4);
+    }
+
+    /* Botones */
+    .button {
+      background-color: #0077cc;
+      color: white;
+      padding: 14px 26px;
+      text-decoration: none;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1em;
+      margin-top: 12px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 119, 204, 0.6);
+      display: inline-block;
+    }
+
+    .button:hover {
+      background-color: #005fa3;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(0, 95, 163, 0.8);
+    }
+
+    /* Tabla */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+    }
+
+    table, th, td {
+      border: 1px solid #005fa3;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: center;
+      background-color: #e9f0ff;
+      font-weight: 500;
+      color: #003366;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    tr:hover td {
+      background-color: #cce0ff;
+    }
+
+    /* Iframe */
+    iframe {
+      width: 100%;
+      height: 320px;
+      border: none;
+      border-radius: 14px;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(0, 95, 163, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+    iframe:hover {
+      box-shadow: 0 6px 22px rgba(0, 95, 163, 0.5);
+    }
+
+    footer {
+      background-color: rgba(0, 61, 102, 0.95);
+      color: white;
+      padding: 1.5em 1em;
+      text-align: center;
+      font-size: 0.95em;
+      user-select: none;
+      box-shadow: inset 0 3px 10px rgba(255,255,255,0.15);
+    }
+
+    footer a {
+      color: #cce4ff;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #ffffff;
+    }
+
+    /* GIF con marco y tamaño */
+    .gif-link {
+      display: inline-block;
+      border: 3px solid #005fa3;
+      border-radius: 14px;
+      overflow: hidden;
+      max-width: 320px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 15px;
+      box-shadow: 0 4px 15px rgba(0, 95, 163, 0.3);
+    }
+
+    .gif-link img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+    }
+
+    .gif-link:hover {
+      transform: scale(1.07);
+      box-shadow: 0 7px 25px rgba(0, 95, 163, 0.6);
+    }
+
+    @media (max-width: 700px) {
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+      header h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-flask"></i> Exploratorium San Francisco</h1>
+    <p>Descubre la ciencia a través de la exploración interactiva</p>
+  </header>
+  <div style="background-color: #ffffffd0; padding: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-weight: 500;">
+    <a href="#bienvenida" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-hand-wave"></i> Bienvenida</a>
+    <a href="#listas" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-list"></i> Listas</a>
+    <a href="#imagenes" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-image"></i> Imágenes</a>
+    <a href="#galeria" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-images"></i> Galería</a>
+    <a href="#tabla" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-table"></i> Tabla</a>
+    <a href="#video" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-video"></i> Video</a>
+    <a href="#conclusion" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-pencil-alt"></i> Conclusión</a>
+    <a href="#consultas" style="margin: 0 10px; color: #005fa3; text-decoration: none;"><i class="fas fa-book"></i> Consultas</a>
+  </div>
+  
+
+  <nav>
+    <label for="menu"><strong>Menú:</strong></label>
+    <select id="menu" onchange="location = this.value;">
+      <option value="#">Selecciona una sección</option>
+      <option value="#bienvenida">👋 Bienvenida</option>
+      <option value="#listas">📋 Listas</option>
+      <option value="#imagenes">🖼️ Imágenes</option>
+      <option value="#galeria">🖼️ Galería</option>
+      <option value="#tabla">📊 Tabla</option>
+      <option value="#video">🎥 Video</option>
+      <option value="#conclusion">📝 Conclusión</option>
+      <option value="#consultas">📚 Páginas Consultadas</option>
+    </select>
+  </nav>
+
+  <main>
+    <section id="bienvenida">
+      <h2>👋 Bienvenida</h2>
+      <p>Bienvenido al <strong>Exploratorium Virtual</strong>, donde ciencia, arte y tecnología se conectan para estimular tu curiosidad. Este museo es una experiencia educativa única para todas las edades.</p>
+    </section>
+
+   
+      <h2>📋 Listas</h2>
+      <h3>Áreas del museo</h3>
+      <ol>
+        <li>Física</li>
+        <li>Biología</li>
+        <li>Percepción humana</li>
+        <li>Arte y ciencia</li>
+      </ol>
+
+      <h3>Servicios disponibles</h3>
+      <ul>
+        <li>Visitas guiadas</li>
+        <li>Tienda de regalos</li>
+        <li>Cafetería</li>
+        <li>Talleres educativos</li>
+      </ul>
+    </section>
+  
+
+
+    <section id="imagenes">
+      <h2>🖼️ Imágenes Temáticas</h2>
+      <div class="card-image"><img src="fachada.png" alt="Fachada del Exploratorium" /></div>
+      <div class="card-image"><img src="https://media.telemundoareadelabahia.com/2022/11/exhibicion-de-luces-sf.jpg?quality=85&strip=all&resize=850%2C478" alt="Exhibición de luz" /></div>
+      <div class="card-image"><img src="https://www.elmuseotransformador.org/wp-content/uploads/2021/03/20130418-35_b.jpg" alt="Niños experimentando ciencia" /></div>
+      <div class="card-image"><img src="https://image.wmsm.co/6747e6f03e490/exploratorium-san-francisco-12.webp?quality=80&width=1280" alt="Exploratorium de noche" /></div>
+    </section>
+
+    <section id="tabla">
+      <h2>📊 Tabla de Precios</h2>
+      <table>
+        <tr>
+          <th>Tipo de Entrada</th>
+          <th>Precio</th>
+        </tr>
+        <tr>
+          <td>Adulto</td>
+          <td>$29.95</td>
+        </tr>
+        <tr>
+          <td>Estudiante</td>
+          <td>$24.95</td>
+        </tr>
+        <tr>
+          <td>Niño</td>
+          <td>$19.95</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="galeria">
+      <h2>🖼️ Galería</h2>
+      <div class="gallery">
+        <!-- Hipervínculos agregados a imágenes -->
+        <a href="https://www.exploratorium.edu/exhibits" target="_blank" title="Exhibiciones">
+          <img src="ex.png" alt="Galería 1" />
+        </a>
+        <a href="https://www.nasa.gov/lunar" target="_blank" title="Información sobre la Luna">
+          <img src="luna.png" alt="Galería 2" />
+        </a>
+        <a href="https://www.exploratorium.edu/events" target="_blank" title="Eventos del Exploratorium">
+          <img src="evento.png" alt="Galería 3" />
+        </a>
+      </div>
+    </section>
+
+    <section id="video">
+      <h2>🎥 Video e Interactividad</h2>
+      <a href="https://www.youtube.com/watch?v=fUd2diTZhY0" target="_blank" class="button">Ver video del Exploratorium</a>
+
+      <!-- Iframe embebido del Exploratorium -->
+      <iframe src="https://www.exploratorium.edu/"></iframe>
+
+      <!-- GIF con hipervínculo -->
+      <div>
+        <a href="https://www.exploratorium.edu/" target="_blank" class="gif-link" title="Visita el Exploratorium">
+          <img src="explo.gif" alt="GIF Ciencia Exploratorium" />
+        </a>
+      </div>
+    </section>
+    <section id="conclusion" style="padding: 40px; background-color: #f9fcff;">
+      <h2 style="font-family: 'Roboto', sans-serif; color: #0d47a1; text-align: center;">Conclusión</h2>
+    
+      <div style="
+        border: 2px solid #90caf9;
+        background-color: #e3f2fd;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 800px;
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        color: #333;">
+        
+        <p>
+          El Exploratorium es un espacio único que promueve la curiosidad, el aprendizaje interactivo y la conexión con la ciencia desde una perspectiva divertida y accesible para todas las edades. A través de este proyecto web, descubrimos cómo la tecnología puede ser una herramienta poderosa para compartir conocimiento, fomentar la creatividad y desarrollar habilidades digitales. Esta experiencia no solo me permitió conocer más sobre un museo increíble, sino también mejorar mis competencias en diseño web.
+        </p>
+    
+      </div>
+    </section>
+  
+
+    <section>
+      <button class="button" onclick="alert('¡Gracias por visitar esta página del Exploratorium!')">Haz clic aquí</button>
+    </section>
+
+    <section id="consultas">
+      <h2>📚 Páginas Consultadas</h2>
+      <ul>
+        <li><a href="https://www.exploratorium.edu/" target="_blank">https://www.exploratorium.edu/</a></li>
+        <li><a href="https://es.wikipedia.org/wiki/Exploratorium" target="_blank">https://es.wikipedia.org/wiki/Exploratorium</a></li>
+        <li><a href="https://www.youtube.com/watch?v=fUd2diTZhY0" target="_blank">Video oficial Exploratorium - YouTube</a></li>
+        <li><a href="https://media.giphy.com/" target="_blank">https://media.giphy.com/ (para GIF)</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Créditos: Luis Alberto Castro Estrada</p>
+    <p>Última actualización: 17 de junio de 2025</p>
+    <p>
+      Página oficial:
+      <a href="https://www.exploratorium.edu/" target="_blank">www.exploratorium.edu</a>
+    </p>
+    <p>URL: https://tusitioejemplo.gratis/exploratorium</p>
+  </footer>
+</body>
+</html>
